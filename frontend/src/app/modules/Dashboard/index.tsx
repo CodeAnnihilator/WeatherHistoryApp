@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import * as styles from './test.scss'
-
 export default class Dashboard extends React.Component {
-  render() {
+  render(): React.ReactElement<{}> {
     return (
-      <div className={styles.test_some}>MAIN COMPONENT</div>
+      <div>
+        dashboard
+      </div>
     )
   }
 }

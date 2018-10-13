@@ -6,6 +6,7 @@ import createHistory from 'history/createBrowserHistory'
 import configureStore from './configureStore'
 import { RouteMap } from './routes'
 
+import './index.css'
 
 const history = createHistory()
 const store = configureStore(history as any)

@@ -17,6 +17,9 @@ export default {
     publicPath: '/'
   },
   resolve: {
+    alias: {
+      app: `${sourcePath}/app`,
+    },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   module: {
@@ -33,13 +36,15 @@ export default {
       },
       {
         test: /\.(css|scss)$/,
+        include: `${sourcePath}/app`,
         use: [
           'style-loader',
           {
             loader: 'typings-for-css-modules-loader',
             query: {
               modules: true,
-              namedExport: true
+              namedExport: true,
+              localIdentName: '[local]__[hash:base64:5]'
             }
           },
           {
@@ -57,7 +62,9 @@ export default {
           },
           { loader: 'sass-loader', options: { sourceMap: true } }
         ]
-      }
+      },
+      { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
+      { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' }
     ]
   },
   target: 'web',

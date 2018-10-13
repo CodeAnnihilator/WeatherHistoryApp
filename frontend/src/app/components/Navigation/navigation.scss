@@ -1,0 +1,15 @@
+.wrapper {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid #e3e3e3;
+  width: 200px;
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.collapsed {
+  width: 85px;
+}

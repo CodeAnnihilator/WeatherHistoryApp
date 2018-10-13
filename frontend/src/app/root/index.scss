@@ -1,0 +1,11 @@
+.app {
+  height: 100%;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  background-color: #f4f5f7;
+  flex: 1;
+  flex-direction: column;
+}
