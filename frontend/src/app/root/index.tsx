@@ -2,13 +2,13 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import { createBrowserHistory } from 'history'
+import createHistory from 'history/createBrowserHistory'
 import configureStore from './configureStore'
 import { RouteMap } from './routes'
 
-const history = createBrowserHistory()
-const initialState = window.initialReduxState
-const store = configureStore(history, initialState)
+
+const history = createHistory()
+const store = configureStore(history as any)
 
 ReactDOM.render(
   <Provider store={store}>
