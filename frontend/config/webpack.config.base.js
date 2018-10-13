@@ -31,6 +31,33 @@ export default {
           'ts-loader'
         ]
       },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'typings-for-css-modules-loader',
+            query: {
+              modules: true,
+              namedExport: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-import')({ addDependencyTo: webpack }),
+                require('postcss-url')(),
+                require('postcss-preset-env')({ stage: 2 }),
+                require('postcss-reporter')(),
+                require('postcss-browser-reporter')({ disabled: false })
+              ]
+            }
+          },
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
+      }
     ]
   },
   target: 'web',
