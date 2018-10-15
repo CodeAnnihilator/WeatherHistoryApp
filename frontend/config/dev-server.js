@@ -3,6 +3,9 @@ import WebpackDevServer from 'webpack-dev-server'
 
 import config from './webpack.config.development'
 
+var port = process.env.PORT || 3000
+var host = process.env.HOST || '0.0.0.0'
+
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   filename: config.output.filename,
@@ -10,14 +13,15 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   stats: true,
   historyApiFallback: true,
+  disableHostCheck: true,
   headers: {
     'Access-Control-Allow-Origin': 'http://localhost:8000',
     'Access-Control-Allow-headers': 'X-Requested-With'
   }
-}).listen(3000, '0.0.0.0', function(err) {
+}).listen(port, host, function(err) {
   if (err) {
     console.log(err)
   } else {
-    console.log('webpack dev server listening on localhost:3000')
+    console.log(`webpack dev server listening on ${host}:${port}`)
   }
 })

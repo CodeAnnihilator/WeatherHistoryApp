@@ -11,7 +11,7 @@ export default {
   ],
   devtool: 'source-map',
   output: {
-    path: '/frontend/dist/',
+    path: path.join(__dirname, '../dist/'),
     filename: 'bundle.js',
     chunkFilename: '[chunkhash].js',
     publicPath: '/'

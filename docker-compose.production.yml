@@ -4,7 +4,7 @@ services:
   frontend:
     image: node:9
     working_dir: /frontend
-    command: npm run development
+    command: npm run rebuild-production
     volumes:
       - ./frontend:/frontend
     ports:
