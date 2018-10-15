@@ -48,16 +48,6 @@ export default {
   },
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: { plugins: ['react-hot-loader/babel'] }
-          },
-          'ts-loader'
-        ]
-      },
       { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
       { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' }
     ]

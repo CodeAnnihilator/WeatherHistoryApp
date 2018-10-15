@@ -24,6 +24,16 @@ export default {
     rules: [
       ...base_config.module.rules,
       {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { plugins: ['react-hot-loader/babel'] }
+          },
+          'ts-loader'
+        ]
+      },
+      {
         test: /\.(css|scss)$/,
         include: `${sourcePath}/app`,
         use: [

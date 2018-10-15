@@ -5,6 +5,7 @@ import path from 'path'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
 import postcssConfig from './postcss.config'
 
@@ -17,6 +18,12 @@ export default {
   module: {
     rules: [
       ...base_config.module.rules,
+      {
+        test: /\.tsx?$/,
+        use: [
+          'ts-loader'
+        ]
+      },
       {
         test: /\.(css|scss)$/,
         include: `${sourcePath}/app`,
@@ -58,16 +65,18 @@ export default {
   plugins: [
     ...base_config.plugins,
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.WatchIgnorePlugin([ /(css|scss)\.d\.ts$/ ]),
     new webpack.DefinePlugin({
       '__DEV__': false,
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env': JSON.stringify('production')
     }),
+    new OptimizeCSSAssetsPlugin({}),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
       chunkFilename: '[id].[hash].css',
     }),
-    new AssetsWebpackPlugin({ filename: 'dist/assets.json' }),
-    new webpack.WatchIgnorePlugin([ /(css|scss)\.d\.ts$/ ])
+    new AssetsWebpackPlugin({ filename: 'dist/assets.json' })
   ]
 }
