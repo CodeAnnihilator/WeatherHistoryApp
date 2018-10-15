@@ -8,7 +8,7 @@ const rootPath = path.join(__dirname, '../')
 app.use(express.static(rootPath + 'dist'))
 
 app.get('*', (req, res) => {
-  res.sendFile(rootPath + 'public/index.html')
+  res.sendFile(rootPath + 'dist/index.html')
 })
 
 app.listen(port)

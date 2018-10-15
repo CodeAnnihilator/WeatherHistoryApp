@@ -4,7 +4,7 @@ import WebpackDevServer from 'webpack-dev-server'
 import config from './webpack.config.development'
 
 var port = process.env.PORT || 3000
-var host = process.env.HOST || '0.0.0.0'
+var host = process.env.HOST || 'localhost'
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -13,7 +13,6 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   stats: true,
   historyApiFallback: true,
-  disableHostCheck: true,
   headers: {
     'Access-Control-Allow-Origin': 'http://localhost:8000',
     'Access-Control-Allow-headers': 'X-Requested-With'

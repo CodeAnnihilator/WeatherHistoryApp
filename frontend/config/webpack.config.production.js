@@ -1,34 +1,44 @@
 import base_config from './webpack.config.base'
 import webpack from 'webpack'
+import path from 'path'
 
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 
-var port = process.env.PORT || 3000
-var host = process.env.HOST || '0.0.0.0'
+import postcssConfig from './postcss.config'
+
+const sourcePath = path.join(__dirname, '../src')
 
 export default {
   ...base_config,
-  output: {
-    ...base_config.output,
-    filename: 'bundle.js'
-  },
   mode: 'production',
+  devtool: 'source-map',
   module: {
-    ...base_config.module,
-
-    //wrap style rules with extract text plugin
-    rules: base_config.module.rules.map(function(conf) {
-        return {
-            ...conf,
-            loader: conf.rule && conf.rule.includes('style!') ? ExtractTextPlugin.extract('style', conf.rule.replace('style!', '')) : conf.rule
-        }
-    })
+    rules: [
+      ...base_config.module.rules,
+      {
+        test: /\.(css|scss)$/,
+        include: `${sourcePath}/app`,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'typings-for-css-modules-loader',
+            query: {
+              publicPath: '../dist/',
+              modules: true,
+              namedExport: true
+            }
+          },
+          { loader: 'postcss-loader', options: postcssConfig },
+          'sass-loader'
+        ]
+      }
+    ]
   },
   optimization: {
+    ...base_config.optimization,
     minimizer: [
-      // we specify a custom UglifyJsPlugin here to get source maps in production
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
@@ -41,14 +51,23 @@ export default {
       })
     ]
   },
+  stats: {
+    entrypoints: false,
+    children: false
+  },
   plugins: [
+    ...base_config.plugins,
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       '__DEV__': false,
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env': JSON.stringify('production')
     }),
-    new ExtractTextPlugin("[hash]_styles.css"),
-    new AssetsWebpackPlugin({ filename: 'dist/assets.json' })
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+    new AssetsWebpackPlugin({ filename: 'dist/assets.json' }),
+    new webpack.WatchIgnorePlugin([ /(css|scss)\.d\.ts$/ ])
   ]
 }
