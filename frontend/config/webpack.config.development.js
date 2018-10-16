@@ -43,6 +43,7 @@ export default {
             query: {
               modules: true,
               namedExport: true,
+              camelCase: true,
               localIdentName: '[local]__[hash:base64:5]'
             }
           },
