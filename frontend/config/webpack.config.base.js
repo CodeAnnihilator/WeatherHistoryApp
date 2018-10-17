@@ -22,7 +22,7 @@ export default {
     alias: {
       app: `${sourcePath}/app`,
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   optimization: {
     splitChunks: {

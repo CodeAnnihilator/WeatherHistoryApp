@@ -1,0 +1,86 @@
+
+.line-chart .line {
+  fill: none;
+}
+.line-chart .line path {
+  stroke: #135ACA;
+  stroke-width: 2;
+}
+.line-chart rect {
+  fill: #135ACA;
+}
+.line-chart circle {
+  fill: white;
+  stroke: #135ACA;
+  stroke-width: 2px;
+}
+.line-chart .y-axis text {
+  fill: grey;
+  font-size: 12px;
+  font-weight: 300;
+}
+.line-chart .x-axis .tick {
+  fill: grey;
+  font-size: 12px;
+}
+.line-chart .x-axis line {
+  stroke: #eeeeee;
+  stroke-width: 2;
+  stroke-dasharray: 10,10;
+}
+.line-chart .x-axis text {
+  font-weight: 500;
+}
+.line-chart.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 80px;
+  height: 45px;
+  padding: 5px;
+  font-size: 14px;
+  background: white;
+  border: solid;
+  border-radius: 3px;
+  border-color: #135ACA;
+  border-width: 3px;
+  pointer-events: none;
+    font-family: helvetica, arial, sans-serif;
+
+}
+.line-chart.tooltip span {
+  color: #135ACA;
+  display: block;
+  font-weight: 500;
+  font-family: helvetica, arial, sans-serif;
+
+}
+.line-chart.tooltip span.number {
+  font-weight: 300;
+  font-family: helvetica, arial, sans-serif;
+  
+}
+.line-chart.tooltip:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -12px;
+  width: 0;
+  height: 0;
+  border-right: 12px solid #135ACA;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  font-family: helvetica, arial, sans-serif;
+}
+.line-chart.tooltip:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -8px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid white;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
