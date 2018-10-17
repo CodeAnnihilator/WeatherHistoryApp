@@ -9,7 +9,7 @@ import * as styles from './dashboard.scss'
 export default class Dashboard extends React.Component {
   render(): React.ReactElement<{}> {
     return (
-      <div style={{ width: '100%' }}>
+      <div>
         <SubHeader text='years range' backgroundColor='white'  />
         <div className={styles.inputRangeWrapper}>
           <InputRange

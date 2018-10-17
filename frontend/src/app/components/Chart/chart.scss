@@ -3,7 +3,7 @@
   fill: none;
 }
 .line-chart .line path {
-  stroke: #135ACA;
+  stroke: #3c8de3;
   stroke-width: 2;
 }
 .line-chart rect {
@@ -14,22 +14,39 @@
   stroke: #135ACA;
   stroke-width: 2px;
 }
+
+.line-chart .y-axis path {
+  stroke: #dedede;
+}
+.line-chart .y-axis line {
+  stroke: #dedede;
+}
+
+.line-chart .x-axis, .y-axis {
+  shape-rendering: crispEdges;
+}
+
 .line-chart .y-axis text {
   fill: grey;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 300;
 }
 .line-chart .x-axis .tick {
   fill: grey;
   font-size: 12px;
 }
+.line-chart .x-axis path {
+  stroke: #dedede;
+}
 .line-chart .x-axis line {
-  stroke: #eeeeee;
-  stroke-width: 2;
+  stroke: #dedede;
+  stroke-width: 1;
   stroke-dasharray: 10,10;
 }
 .line-chart .x-axis text {
-  font-weight: 500;
+  fill: grey;
+  font-size: 10px;
+  font-weight: 300;
 }
 .line-chart.tooltip {
   position: absolute;

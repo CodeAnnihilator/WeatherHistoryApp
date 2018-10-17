@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 export function d3DrawChart(root, data, styles) {
   const rootBoundings = root.node().getBoundingClientRect()
   const chartWidth = rootBoundings.width
-  const chartHeight = 300
+  const chartHeight = 500
   const margin = { top: 20, right: 30, bottom: 30, left: 60 }
 
   const xExtents = d3.extent(data, function(d) {
@@ -18,15 +18,24 @@ export function d3DrawChart(root, data, styles) {
     .scaleTime()
     .domain([xExtents[0], xExtents[1]])
     .range([0, chartWidth - margin.left - margin.right])
+    .nice()
 
   const y = d3
     .scaleLinear()
     .domain([yExtents[0], yExtents[1]])
-    .range([chartHeight, 0])
+    .range([chartHeight - margin.top - margin.bottom, 0])
 
-  const xAxis = d3.axisBottom(x).tickSize(4).tickPadding(10).tickSizeOuter(0)
+  const xAxis = d3
+    .axisBottom(x)
+    .tickSize(4)
+    .tickPadding(10)
+    .tickSizeOuter(0)
 
-  const yAxis = d3.axisLeft(y).tickSize(4).tickPadding(10).tickSizeOuter(0)
+  const yAxis = d3
+    .axisLeft(y)
+    .tickSize(4)
+    .tickPadding(10)
+    .tickSizeOuter(0)
 
   const line = d3.line().curve(d3.curveBasis)
     .x((d) => x(new Date(d.t)))
@@ -37,13 +46,12 @@ export function d3DrawChart(root, data, styles) {
     .attr('width', chartWidth)
     .attr('height', chartHeight )
     .append('g')
-    .attr('class', styles.main)
     .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
 
   chart
     .append('g')
     .attr('class', styles.xAxis)
-    .attr('transform', 'translate(0, ' + chartHeight + ')')
+    .attr('transform', 'translate(0, ' + (chartHeight - margin.top - margin.bottom) + ')')
     .call(xAxis)
 
   chart
@@ -63,7 +71,7 @@ export function d3DrawChart(root, data, styles) {
 export function d3ResizeChart(root, data, styles) {
   const rootBoundings = root.node().getBoundingClientRect()
   const chartWidth = rootBoundings.width
-  const chartHeight = 300
+  const chartHeight = 500
   const margin = { top: 20, right: 30, bottom: 30, left: 60 }
 
   const xExtents = d3.extent(data, function(d) {
@@ -82,16 +90,36 @@ export function d3ResizeChart(root, data, styles) {
   const y = d3
     .scaleLinear()
     .domain([yExtents[0], yExtents[1]])
-    .range([chartHeight, 0])
+    .range([chartHeight - margin.top - margin.bottom, 0])
+
+  const xAxis = d3
+    .axisBottom(x)
+    .tickSize(4)
+    .tickPadding(10)
+    .tickSizeOuter(0)
+
+  const yAxis = d3
+    .axisLeft(y)
+    .tickSize(4)
+    .tickPadding(10)
+    .tickSizeOuter(0)
 
   const line = d3.line().curve(d3.curveBasis)
     .x((d) => x(new Date(d.t)))
     .y((d) => y(d.v))
 
-  root.attr('width', chartWidth)
+  const chart = root.attr('width', chartWidth)
 
-  root
+  chart
     .selectAll(`.${styles.line}`)
     .selectAll('path')
     .attr('d', line)
+
+  chart
+    .selectAll(`.${styles.xAxis}`)
+    .call(xAxis)
+
+  chart
+    .selectAll(`.${styles.yAxis}`)
+    .call(yAxis)
 }
