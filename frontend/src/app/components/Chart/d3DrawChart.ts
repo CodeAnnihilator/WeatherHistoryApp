@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import cn from 'classnames'
 
 export function d3DrawChart(root, data, styles) {
   const rootBoundings = root.node().getBoundingClientRect()
@@ -66,6 +67,88 @@ export function d3DrawChart(root, data, styles) {
     .enter()
     .append('path')
     .attr('d', line)
+
+  const tooltip = root
+    .append('div')
+    .attr('class', cn(styles.lineChart, styles.tooltip))
+    .style('opacity', 0)
+
+  chart
+    .selectAll('circle')
+    .data(data)
+    .enter()
+    .append('circle')
+    .attr('id', (d, i) => ('dot-' + i))
+    .attr('cx', (d, i) => x(new Date(d.t)))
+    .attr('cy', (d, i) => y(d.v))
+    .attr('r', 4)
+    .style('opacity', 0)
+
+  const barWidth = chartWidth / data.length
+
+  chart
+    .selectAll('rect.hover-line')
+    .data(data)
+    .enter()
+    .append('rect')
+    .style('opacity', 0)
+    .attr('width', 2)
+    .attr('class', cn(styles.lineChart, styles.hoverLine))
+    .attr('id', (d, i) => ('line-' + i))
+    .attr('height', (d) => (chartHeight - y(d.v) - margin.top - margin.bottom))
+    .attr('x', (d, i) => (x(new Date(d.t)) - 2 / 2))
+    .attr('y', (d, i) => (y(d.v) + 3))
+
+
+  chart
+    .selectAll('rect.hover-box')
+    .data(data)
+    .enter()
+    .append('rect')
+    .style('opacity', 0)
+    .attr('class', 'line-chart hover-box')
+    .attr('width', barWidth)
+    .attr('height', (d) => (chartHeight - y(d.v) - margin.top - margin.bottom))
+    .attr('x', (d, i) => (x(new Date(d.t)) - barWidth / 2))
+    .attr('y', (d, i) => y(d.v))
+    .on('mouseover', (d, i) => {
+
+      const rootBoundings = root.node().getBoundingClientRect()
+      const xtranslate = x(new Date(d.t))
+
+      tooltip
+        .style('opacity', 1)
+        .style('left', () => (x(new Date(d.t)) - 2 / 2 + margin.left + 25 + 'px'))
+        .style('top', d3.event.pageY - rootBoundings.top + 20 + 'px')
+        .html('some values')
+
+      const currentLine = '#line-' + i
+      d3.select(currentLine).style('opacity', 1)
+
+      const currentDot = '#dot-' + i
+      d3.select(currentDot).style('opacity', 1)
+
+      d3.selectAll(`g[transform = "translate(${xtranslate}, 0)"]`)
+        .select('text')
+        .style('opacity', 1)
+    })
+    .on('mouseout', (d, i) => {
+      
+      const xtranslate = x(new Date(d.t))
+
+      tooltip.style('opacity', 0)
+
+      const currentLine = '#line-' + i
+      d3.select(currentLine).style('opacity', 0)
+
+      const currentDot = '#dot-' + i
+      d3.select(currentDot).style('opacity', 0)
+
+      d3.selectAll(`g[transform = "translate(${xtranslate}, 0)"]`)
+        .select('text[style = "text-anchor: middle; opacity: 1;"]')
+        .style('opacity', 0)
+
+    })
 }
 
 export function d3ResizeChart(root, data, styles) {

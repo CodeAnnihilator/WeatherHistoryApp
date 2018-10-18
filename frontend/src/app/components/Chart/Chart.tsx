@@ -5,10 +5,20 @@ import { d3DrawChart, d3ResizeChart } from './d3DrawChart'
 
 import * as styles from './chart.scss'
 
-export default class Chart extends React.Component<{}> {
+interface IDashboardProps {
+  width: number
+}
+
+export default class Chart extends React.Component<IDashboardProps> {
 
   public refs: {
     chart: HTMLInputElement
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const data = require('./temperature.json')
+    const root = d3.select(this.refs.chart)
+    d3ResizeChart(root, data.slice(0, 1000), styles)
   }
 
   componentDidMount() {
@@ -19,6 +29,6 @@ export default class Chart extends React.Component<{}> {
   }
 
   render() {
-    return <svg ref='chart' style={{ width: '100%' }}></svg>
+    return <svg ref='chart' width={this.props.width} style={{ width: '100%' }}></svg>
   }
 }
