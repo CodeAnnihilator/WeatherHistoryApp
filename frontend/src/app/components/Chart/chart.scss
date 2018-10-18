@@ -49,23 +49,19 @@
   font-weight: 300;
 }
 .line-chart.tooltip {
+  transition: all 0.1s;
+  width: 110px;
   position: absolute;
-  text-align: center;
-  width: 80px;
-  height: 45px;
-  padding: 5px;
+  padding: 15px;
+  vertical-align: middle;
   font-size: 14px;
-  background: white;
-  border: solid;
-  border-radius: 3px;
-  border-color: #135ACA;
-  border-width: 3px;
+  background: rgba(97, 110, 223, 0.9);
   pointer-events: none;
-    font-family: helvetica, arial, sans-serif;
-
+  font-family: helvetica, arial, sans-serif;
+  border-radius: 4px;
 }
 .line-chart.tooltip span {
-  color: #135ACA;
+  color: white;
   display: block;
   font-weight: 500;
   font-family: helvetica, arial, sans-serif;
@@ -76,28 +72,20 @@
   font-family: helvetica, arial, sans-serif;
   
 }
-.line-chart.tooltip:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -12px;
-  width: 0;
-  height: 0;
-  border-right: 12px solid #135ACA;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  font-family: helvetica, arial, sans-serif;
-}
+
 .line-chart.tooltip:after {
   content: '';
   position: absolute;
-  top: 50%;
+  left: calc(50% - 7px);
+  bottom: -6px;
   right: 100%;
-  margin-top: -8px;
   width: 0;
   height: 0;
-  border-right: 8px solid white;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+  border-top: 6px solid rgba(97, 110, 223, 0.9);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.hover-box, .hover-line {
+  opacity: 1;
 }
