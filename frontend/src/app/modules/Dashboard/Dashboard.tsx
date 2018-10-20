@@ -2,11 +2,10 @@ import * as React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 import { List } from 'immutable'
 
-import InputRange from 'app/components/InputRange/InputRange'
 import SubHeader from 'app/components/SubHeader/SubHeader'
 import Chart from 'app/components/Chart/Chart'
 
-import * as styles from './dashboard.scss'
+import DataRangeScrollContainer from './containers/dataRangeScroll'
 
 interface IDashboardProps {
   requestTemperature: Function,
@@ -65,15 +64,7 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
         {
           temperature.size !== 0 && (
             <div>
-              <div className={styles.inputRangeWrapper}>
-                <InputRange
-                  draggableTrack
-                  minValue={1978}
-                  maxValue={2016}
-                  value={{ min: 1982, max: 2011 }}
-                  onChange={() => console.log('ddd')}
-                />
-              </div>
+              <DataRangeScrollContainer />
               <SubHeader text='chart' backgroundColor='white' />
               <div>
                   <div>button 1</div>

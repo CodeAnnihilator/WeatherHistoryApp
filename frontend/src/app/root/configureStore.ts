@@ -1,6 +1,7 @@
 import createSagaMiddleware from 'redux-saga'
 import { Store, createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { enableBatching } from 'redux-batched-actions'
 
 import { routerMiddleware } from 'react-router-redux'
 
@@ -16,7 +17,7 @@ export default function configureStore(history: any) {
   const middleware = routerMiddleware(history)
 
   const store: Store<RootState> = createStore(
-    rootReducer,
+    enableBatching(rootReducer),
     initialState,
     composeEnhancers(
       applyMiddleware(middleware, sagaMiddleware)
