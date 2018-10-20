@@ -20,15 +20,15 @@ export default class Chart extends React.Component<IDashboardProps> {
     if (nextProps.width !== this.props.width) {
       const data = require('./temperature.json')
       const root = d3.select(this.refs.chart)
-      d3ResizeChart(root, data.slice(0, 200), styles)
+      d3ResizeChart(root, data.slice(0, 20), styles)
     }
   }
 
   componentDidMount() {
     const data = require('./temperature.json')
     const root = d3.select(this.refs.chart)
-    d3DrawChart(root, data.slice(0, 200), styles)
-    window.addEventListener('resize', () => d3ResizeChart(root, data.slice(0, 200), styles))
+    d3DrawChart(root, data.slice(0, 20), styles)
+    window.addEventListener('resize', () => d3ResizeChart(root, data.slice(0, 20), styles))
   }
 
   render() {

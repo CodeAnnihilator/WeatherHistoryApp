@@ -64,6 +64,7 @@
     "webpack-fix-style-only-entries": "0.0.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^4.5.0",
     "d3": "^5.7.0",
@@ -82,6 +83,7 @@
     "redux-actions": "^2.6.1",
     "redux-immutable": "^4.0.0",
     "redux-saga": "^0.16.2",
+    "reselect": "^4.0.0",
     "resize-observer-polyfill": "^1.5.0",
     "typesafe-actions": "^2.0.4",
     "webpack": "^4.20.2"
