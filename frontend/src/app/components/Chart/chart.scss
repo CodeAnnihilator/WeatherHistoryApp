@@ -3,15 +3,14 @@
   fill: none;
 }
 .line-chart .line path {
-  stroke: #3c8de3;
-  stroke-width: 2;
+  stroke-width: 1.5;
 }
 .line-chart rect {
-  fill: #135ACA;
+  fill: #5295fb;
 }
 .line-chart circle {
   fill: white;
-  stroke: #135ACA;
+  stroke: #5295fb;
   stroke-width: 2px;
 }
 
@@ -49,13 +48,13 @@
   font-weight: 300;
 }
 .line-chart.tooltip {
-  transition: all 0.1s;
+  transition: top 0.1s;
   width: 110px;
   position: absolute;
   padding: 15px;
   vertical-align: middle;
   font-size: 14px;
-  background: rgba(97, 110, 223, 0.9);
+  background:#5295fb;
   pointer-events: none;
   font-family: helvetica, arial, sans-serif;
   border-radius: 4px;
@@ -81,11 +80,11 @@
   right: 100%;
   width: 0;
   height: 0;
-  border-top: 6px solid rgba(97, 110, 223, 0.9);
+  border-top: 6px solid#5295fb;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
 }
 
-.hover-box, .hover-line {
+.hover-box, .hover-line, .overlay {
   opacity: 1;
 }
