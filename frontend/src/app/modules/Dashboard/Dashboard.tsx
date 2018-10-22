@@ -73,7 +73,7 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
               <ButtonSwitcherContainer />
               <SubHeader text='data filter' backgroundColor='white' />
               <SubHeader text='chart' backgroundColor='white' />
-              <Chart width={chartWidth} data={data.slice(0, 20)} />
+              <Chart width={chartWidth} data={data} />
             </div>
           )
         }

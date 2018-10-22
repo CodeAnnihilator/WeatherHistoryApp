@@ -28,11 +28,15 @@ export default class DataRangeScroll extends React.Component<IDataRangeScrollPro
     }
   }
 
-  handleChange = values => this.setState({
-    currentMinValue: values.min,
-    currentMaxValue: values.max
-  })
-
+  handleChange = ({ min, max }) => {
+    const { minValue, maxValue } = this.props
+    const nextMin = min >= minValue ? min : minValue
+    const nextMax = max <= maxValue ? max : maxValue
+    this.setState({
+      currentMinValue: nextMin,
+      currentMaxValue: nextMax
+    })  
+  }
   handleCompleteChange = values => this.props.handleChange(values)
 
   render(): React.ReactElement<{}> {

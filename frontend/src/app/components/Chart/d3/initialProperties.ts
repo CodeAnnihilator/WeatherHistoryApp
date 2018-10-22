@@ -14,8 +14,8 @@ export default function initialProperties(root, data) {
     left: 60
   }
 
-  const xExtents = d3.extent(data, (d) => new Date(d.t.replace("-", "/")))
-  const yExtents = d3.extent(data, (d) => d.v)
+  const xExtents = d3.extent(data, (d) => new Date(d.key.replace("-", "/")))
+  const yExtents = d3.extent(data, (d) => d.value)
 
   const x = d3
     .scaleTime()
@@ -42,8 +42,8 @@ export default function initialProperties(root, data) {
 
   const line = d3.line()
     // .curve(d3.curveMonotoneX)
-    .x((d) => x(new Date(d.t.replace("-", "/"))))
-    .y((d) => y(d.v))
+    .x((d) => x(new Date(d.key.replace("-", "/"))))
+    .y((d) => y(d.value))
 
   return { width, height, margin, xAxis, yAxis, line, x, y, barWidth, rootBoundings }
 }

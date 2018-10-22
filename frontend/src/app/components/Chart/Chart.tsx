@@ -19,11 +19,8 @@ export default class Chart extends React.Component<IDashboardProps> {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
     const { data } = nextProps
     const root = d3.select(this.refs.chart)
-    // if (nextProps.width !== this.props.width) {
-    // }
     const isWidthChanged = nextProps.width !== this.props.width
     updateChart(root, data, styles, isWidthChanged)
   }
@@ -32,7 +29,6 @@ export default class Chart extends React.Component<IDashboardProps> {
     const { data } = this.props
     const root = d3.select(this.refs.chart)
     drawChart(root, data, styles)
-    window.addEventListener('resize', () => updateChart(root, data, styles, false))
   }
 
   render() {
