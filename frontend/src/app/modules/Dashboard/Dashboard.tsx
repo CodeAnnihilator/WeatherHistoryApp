@@ -1,16 +1,18 @@
 import * as React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
-import { List } from 'immutable'
 
 import SubHeader from 'app/components/SubHeader/SubHeader'
 import Chart from 'app/components/Chart/Chart'
 
 import DataRangeScrollContainer from './containers/dataRangeScroll'
+import ButtonSwitcherContainer from './containers/buttonSwitcher'
 
 interface IDashboardProps {
-  requestTemperature: Function,
-  temperature: List<string>,
-  isDataLoaded: boolean
+  requestTemperature: Function
+  requestPrecipitation: Function
+  switchTab: Function
+  data: string[]
+  currentTab: string
 }
 
 interface IDashboardState {
@@ -35,8 +37,10 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
   }
 
   componentWillMount() {
-    if (!this.props.isDataLoaded) {
+    if(this.props.currentTab === 'temperature') {
       this.props.requestTemperature()
+    } else {
+      this.props.requestPrecipitation()
     }
   }
 
@@ -56,21 +60,20 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
 
   render(): React.ReactElement<{}> {
     const { chartWidth } = this.state
-    const { temperature } = this.props
+    const { data } = this.props
     return (
       <div ref='main'>
         <SubHeader text='years range' backgroundColor='white'  />
-        { temperature.size === 0 && 'Loading data...' }
+        { !data.length && 'Loading data...' }
         {
-          temperature.size !== 0 && (
+          data.length !== 0 && (
             <div>
               <DataRangeScrollContainer />
+              <SubHeader text='data render' backgroundColor='white' />
+              <ButtonSwitcherContainer />
+              <SubHeader text='data filter' backgroundColor='white' />
               <SubHeader text='chart' backgroundColor='white' />
-              <div>
-                  <div>button 1</div>
-                  <div>button 2</div>
-              </div>
-              <Chart width={chartWidth} />
+              <Chart width={chartWidth} data={data.slice(0, 20)} />
             </div>
           )
         }

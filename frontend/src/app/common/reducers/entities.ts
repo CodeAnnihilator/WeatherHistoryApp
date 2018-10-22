@@ -1,10 +1,10 @@
-import { fromJS, List } from 'immutable'
+import { fromJS } from 'immutable'
 
 import { actionTypes as at } from '../constants/entities'
 
 const initialState = fromJS({
-  temperature: List(),
-  precipitation: List()
+  temperature: [],
+  precipitation: []
 })
 
 export default (state = initialState, action: any) => {
@@ -12,6 +12,9 @@ export default (state = initialState, action: any) => {
     case at.REQUEST_TEMPERATURE_SUCCESS:
       return state
         .set('temperature', action.payload)
+    case at.REQUEST_PRECIPITATION_SUCCESS:
+      return state
+        .set('precipitation', action.payload)
     default:
       return state
   }

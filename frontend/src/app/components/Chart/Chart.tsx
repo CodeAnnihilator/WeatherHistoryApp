@@ -2,12 +2,14 @@ import * as React from 'react'
 import * as d3 from 'd3'
 import cn from 'classnames'
 
-import { d3DrawChart, d3ResizeChart } from './d3DrawChart'
+import drawChart from './d3/drawChart'
+import updateChart from './d3/updateChart'
 
 import * as styles from './chart.scss'
 
 interface IDashboardProps {
   width: number
+  data: string[]
 }
 
 export default class Chart extends React.Component<IDashboardProps> {
@@ -17,18 +19,20 @@ export default class Chart extends React.Component<IDashboardProps> {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.width !== this.props.width) {
-      const data = require('./temperature.json')
-      const root = d3.select(this.refs.chart)
-      d3ResizeChart(root, data.slice(0, 20), styles)
-    }
+    // console.log(nextProps)
+    const { data } = nextProps
+    const root = d3.select(this.refs.chart)
+    // if (nextProps.width !== this.props.width) {
+    // }
+    const isWidthChanged = nextProps.width !== this.props.width
+    updateChart(root, data, styles, isWidthChanged)
   }
 
   componentDidMount() {
-    const data = require('./temperature.json')
+    const { data } = this.props
     const root = d3.select(this.refs.chart)
-    d3DrawChart(root, data.slice(0, 20), styles)
-    window.addEventListener('resize', () => d3ResizeChart(root, data.slice(0, 20), styles))
+    drawChart(root, data, styles)
+    window.addEventListener('resize', () => updateChart(root, data, styles, false))
   }
 
   render() {

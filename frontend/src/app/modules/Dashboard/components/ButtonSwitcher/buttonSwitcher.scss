@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  max-width: 300px;
+  margin-left: 30px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.text {
+  padding: 13px 20px;
+  border: 1px solid #eaeaea;
+  color: #6f6f6f;
+  cursor: pointer;
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+  &:last-child {
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+  }
+}
+
+.active {
+  background-color: #32363a;
+  color: white;
+  cursor: not-allowed;
+}
