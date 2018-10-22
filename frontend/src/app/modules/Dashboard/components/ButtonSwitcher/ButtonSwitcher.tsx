@@ -24,6 +24,7 @@ const ButtonSwitcher: React.SFC<IButtonSwitcherProps> = (props) => {
         className={cn(styles.text, {[styles.active]: currentTab === 'precipitation'})}
         onClick={() => currentTab !== 'precipitation' ? onSwitch('precipitation') : undefined}
       >precipitation</div>
+      test
     </div>
   )
 }
