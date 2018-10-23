@@ -1,13 +1,16 @@
 import * as d3 from 'd3'
 import cn from 'classnames'
+import * as styles from '../chart.scss'
 
-export function drawOnMouseOver(root, d, x, y, i, styles) {
+export function drawOnMouseOver(root, d, x, y, i) {
   const rootBoundings = root.node().getBoundingClientRect()
   const xtranslate = x(new Date(d.key.replace("-", "/")))
-  const rightBoundary = rootBoundings.width + 20
-  const positionX = xtranslate + rootBoundings.left - 10 <= rightBoundary
+  const rightBoundary = rootBoundings.width
+
+  const positionX = xtranslate + rootBoundings.left - 10 <= rightBoundary + rootBoundings.left -  200
     ? xtranslate + rootBoundings.left - 10
-    : rightBoundary
+    : rightBoundary + rootBoundings.left -  200
+
   d3.selectAll(`.${cn(styles.tooltip)}`)
     .style('opacity', 1)
     .style('left', positionX + 'px')
@@ -30,7 +33,7 @@ export function drawOnMouseOver(root, d, x, y, i, styles) {
     .style('opacity', 1)
 }
 
-export function clearOnMouseOut(d, x, i, styles) {
+export function clearOnMouseOut(d, x, i) {
   const xtranslate = x(new Date(d.key.replace("-", "/")))
 
   d3.selectAll(`.${cn(styles.tooltip)}`).style('opacity', 0)

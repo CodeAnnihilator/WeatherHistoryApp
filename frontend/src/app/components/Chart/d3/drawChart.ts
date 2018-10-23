@@ -1,10 +1,11 @@
 import cn from 'classnames'
+import * as styles from '../chart.scss'
 
 import initialProperties from './initialProperties'
 import { drawOnMouseOver, clearOnMouseOut } from './mouseEvents'
 import defsAndFilters from './defsAndFilters'
 
-export default function drawChart(root, data, styles) {
+export default function drawChart(root, data) {
   const values = initialProperties(root, data)
   const { width, height, margin, xAxis, yAxis, line, x, y, barWidth } = values
 
@@ -87,6 +88,6 @@ export default function drawChart(root, data, styles) {
     .attr('height', (d) => (height - y(d.value) - margin.top - margin.bottom))
     .attr('x', (d, i) => (x(new Date(d.key.replace("-", "/"))) - barWidth / 2))
     .attr('y', (d, i) => y(d.value))
-    .on('mouseover', (d, i) => drawOnMouseOver(root, d, x, y, i, styles))
-    .on('mouseout', (d, i) => clearOnMouseOut(d, x, i, styles))
+    .on('mouseover', (d, i) => drawOnMouseOver(root, d, x, y, i))
+    .on('mouseout', (d, i) => clearOnMouseOut(d, x, i))
 }

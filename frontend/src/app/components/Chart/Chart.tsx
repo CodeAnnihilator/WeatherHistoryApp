@@ -21,14 +21,14 @@ export default class Chart extends React.Component<IDashboardProps> {
   componentWillReceiveProps(nextProps) {
     const { data } = nextProps
     const root = d3.select(this.refs.chart)
-    const isWidthChanged = nextProps.width !== this.props.width
-    updateChart(root, data, styles, isWidthChanged)
+    const shouldUpdate = nextProps.width !== this.props.width && data.length > 0
+    updateChart(root, data, shouldUpdate)
   }
 
   componentDidMount() {
     const { data } = this.props
     const root = d3.select(this.refs.chart)
-    drawChart(root, data, styles)
+    drawChart(root, data)
   }
 
   render() {

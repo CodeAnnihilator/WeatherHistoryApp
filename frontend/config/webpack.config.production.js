@@ -34,6 +34,7 @@ export default {
             query: {
               publicPath: '../dist/',
               modules: true,
+              camelCase: true,
               namedExport: true
             }
           },
