@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import InputRange from 'app/components/InputRange/InputRange'
+import InputRange from 'app/common/components/InputRange/InputRange'
 
 import * as styles from './dataRangeScroll.scss'
 
@@ -16,7 +16,6 @@ interface IDataRangeScrollState {
   currentMinValue: number
   currentMaxValue: number
 }
-
 
 export default class DataRangeScroll extends React.Component<IDataRangeScrollProps, IDataRangeScrollState> {
 

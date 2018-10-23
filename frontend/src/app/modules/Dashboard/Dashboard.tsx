@@ -1,8 +1,8 @@
 import * as React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
-import SubHeader from 'app/components/SubHeader/SubHeader'
-import Chart from 'app/components/Chart/Chart'
+import SubHeader from 'app/common/components/SubHeader/SubHeader'
+import Chart from 'app/common/components/Chart/Chart'
 
 import DataRangeScrollContainer from './containers/dataRangeScroll'
 import ButtonSwitcherContainer from './containers/buttonSwitcher'
