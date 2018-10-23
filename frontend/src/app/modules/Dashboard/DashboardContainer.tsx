@@ -1,7 +1,14 @@
 import { connect } from 'react-redux'
 
-import { requestTemperature, requestPrecipitation } from 'app/common/actions/entities'
-import { getDataToRender, getCurrentTab } from './selectors/dashboard'
+import {
+  requestTemperature,
+  requestPrecipitation
+} from 'app/common/actions/entities'
+
+import {
+  getDataToRender,
+  getCurrentTab
+} from './selectors/dashboard'
 
 import Dashboard from './Dashboard'
 

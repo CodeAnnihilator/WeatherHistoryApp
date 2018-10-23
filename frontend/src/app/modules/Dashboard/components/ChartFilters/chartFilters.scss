@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  margin-left: 30px;
+  font-size: 13px;
+  color: #32363a;
+}
+
+.block {
+  margin: 0 10px;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.value {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  margin: 0 5px;
+  cursor: pointer;
+  &--active {
+    color: white;
+    background-color: #5798fc;
+    border: 1px solid #5798fc;
+  }
+}

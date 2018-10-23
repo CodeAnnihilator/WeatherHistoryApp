@@ -6,6 +6,7 @@ import Chart from 'app/components/Chart/Chart'
 
 import DataRangeScrollContainer from './containers/dataRangeScroll'
 import ButtonSwitcherContainer from './containers/buttonSwitcher'
+import ChartFilters from './containers/chartFilters'
 
 interface IDashboardProps {
   requestTemperature: Function
@@ -72,6 +73,7 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
               <SubHeader text='data render' backgroundColor='white' />
               <ButtonSwitcherContainer />
               <SubHeader text='data filter' backgroundColor='white' />
+              <ChartFilters />
               <SubHeader text='chart' backgroundColor='white' />
               <Chart width={chartWidth} data={data} />
             </div>

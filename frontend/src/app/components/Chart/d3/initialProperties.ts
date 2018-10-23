@@ -41,9 +41,9 @@ export default function initialProperties(root, data) {
     .tickSizeOuter(0)
 
   const line = d3.line()
-    // .curve(d3.curveMonotoneX)
-    .x((d) => x(new Date(d.key.replace("-", "/"))))
-    .y((d) => y(d.value))
+  // .curve(d3.curveMonotoneX)
+  .x((d) => x(new Date(d.key.replace("-", "/"))))
+  .y((d) => y(d.value))
 
   return { width, height, margin, xAxis, yAxis, line, x, y, barWidth, rootBoundings }
 }
