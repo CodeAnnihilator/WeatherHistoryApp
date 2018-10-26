@@ -1,7 +1,11 @@
 import axios from 'axios'
 
+import { backendURI } from 'app/config/main'
+
+console.log(process.env.NODE_ENV)
+
 export const fetch = axios.create({
-  baseURL: 'http://localhost:8000/api/'
+  baseURL: backendURI
 })
 
 fetch.interceptors.response.use((response) => {
