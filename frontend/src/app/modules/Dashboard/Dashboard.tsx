@@ -3,6 +3,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 
 import SubHeader from 'app/common/components/SubHeader/SubHeader'
 import Chart from 'app/common/components/Chart/Chart'
+import Preloader from 'app/common/components/Preloader/Preloader'
 
 import DataRangeScrollContainer from './containers/dataRangeScroll'
 import ButtonSwitcherContainer from './containers/buttonSwitcher'
@@ -14,6 +15,8 @@ interface IDashboardProps {
   switchTab: Function
   data: string[]
   currentTab: string
+  isDataLoaded: boolean
+  dataToRequest: string
 }
 
 interface IDashboardState {
@@ -38,10 +41,29 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
   }
 
   componentWillMount() {
-    if(this.props.currentTab === 'temperature') {
-      this.props.requestTemperature()
+
+    const {
+      isDataLoaded,
+      currentTab,
+      requestTemperature,
+      requestPrecipitation
+    } = this.props
+
+    if (isDataLoaded) return
+
+    if(currentTab === 'temperature') {
+      requestTemperature()
     } else {
-      this.props.requestPrecipitation()
+      requestPrecipitation()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { requestPrecipitation, requestTemperature } = this.props
+    const { dataToRequest } = nextProps
+    if (nextProps.currentTab !== this.props.currentTab) {
+      if (dataToRequest === 'temperature') return requestTemperature()
+      if (dataToRequest === 'precipitation') return requestPrecipitation()
     }
   }
 
@@ -61,13 +83,12 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
 
   render(): React.ReactElement<{}> {
     const { chartWidth } = this.state
-    const { data } = this.props
+    const { data, isDataLoaded } = this.props
     return (
       <div ref='main' style={{ flex: 1 }}>
-        <SubHeader text='years range' backgroundColor='white'  />
-        { !data.length && 'Loading data...' }
+        { !isDataLoaded && <Preloader /> }
         {
-          data.length !== 0 && (
+          isDataLoaded && (
             <div>
               <DataRangeScrollContainer />
               <SubHeader text='data render' backgroundColor='white' />
@@ -75,7 +96,7 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
               <SubHeader text='data filter' backgroundColor='white' />
               <ChartFilters />
               <SubHeader text='chart' backgroundColor='white' />
-              <Chart width={chartWidth} data={data} />
+              { data.length !== 0 && <Chart width={chartWidth} data={data} /> }
             </div>
           )
         }

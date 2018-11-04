@@ -6,13 +6,20 @@ import {
 } from 'app/common/actions/entities'
 
 import {
+  getIsDataLoaded
+} from 'app/common/selectors/entities'
+
+import {
   getDataToRender,
-  getCurrentTab
+  getCurrentTab,
+  getDataToRequest
 } from './selectors/dashboard'
 
 import Dashboard from './Dashboard'
 
 const mapStateToProps = (state: any) => ({
+  dataToRequest: getDataToRequest(state),
+  isDataLoaded: getIsDataLoaded(state),
   data: getDataToRender(state),
   currentTab: getCurrentTab(state),
 })

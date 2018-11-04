@@ -4,7 +4,7 @@ import { actionTypes as at } from '../constants/dashboard'
 
 const initialState = fromJS({
   currentTab: 'temperature',
-  aggregation: 'max',
+  aggregation: 'avg',
   isDetailed: false
 })
 
@@ -13,7 +13,7 @@ export default (state = initialState, action: any) => {
     case at.SWITCH_TAB:
       return state
         .set('currentTab', action.payload)
-        .set('aggregation', state.get('currentTab') === 'temperature' ? 'total' : 'max')
+        .set('aggregation', state.get('currentTab') === 'temperature' ? 'total' : 'avg')
     case at.SWITCH_AGGREGATION:
       return state
         .set('aggregation', action.payload)

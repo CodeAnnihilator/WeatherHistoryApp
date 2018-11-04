@@ -11,7 +11,6 @@ import { requestTemperature } from 'app/api/temperature'
 import { requestPrecipitation } from 'app/api/precipitation'
 
 function* requestTemperatureSaga() {
-  yield call(requestPrecipitationSaga)
   try {
     const { data } = yield call(requestTemperature)
     const temperature = fromJS(data)

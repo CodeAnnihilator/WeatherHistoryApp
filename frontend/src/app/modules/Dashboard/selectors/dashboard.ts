@@ -3,7 +3,8 @@ import * as d3 from 'd3'
 
 import {
   getTemperature,
-  getPrecipitation
+  getPrecipitation,
+  getIsDataLoaded
 } from 'app/common/selectors/entities'
 
 import {
@@ -15,6 +16,15 @@ import {
 export const getCurrentTab = state => state.getIn(['dashboard', 'currentTab'])
 export const getAggregation = state => state.getIn(['dashboard', 'aggregation'])
 export const getIsDetailed = state => state.getIn(['dashboard', 'isDetailed'])
+
+export const getDataToRequest = createSelector(
+  [getTemperature, getPrecipitation, getCurrentTab, getIsDataLoaded],
+  (temperature, precipitation, currentTab, isDataLoaded) => {
+    if (!isDataLoaded) return
+    if (currentTab === 'temperature' && !temperature.size) return 'temperature'
+    if (currentTab === 'precipitation' && !precipitation.size) return 'precipitation'
+  }
+)
 
 export const getCurrentData = createSelector(
   [getTemperature, getPrecipitation, getCurrentTab],

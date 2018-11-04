@@ -20,8 +20,8 @@ export default class DescriptionText extends React.Component<{}> {
           temperature/precipitation changes for last 120 years in one certain Russian city 
           (unfortunately, information about which city is not provided).
         </p>
-        <Element name='theBeginning'>
-          <h3 className={styles.subHeader}>The Beginning</h3>
+        <Element name='inspiration'>
+          <h3 className={styles.subHeader}>Inspiration</h3>
         </Element>
         <p>
           My friend told me, that there is a Russian banking company, 

@@ -36,6 +36,7 @@ export default class DataRangeScroll extends React.Component<IDataRangeScrollPro
       currentMaxValue: nextMax
     })  
   }
+
   handleCompleteChange = values => this.props.handleChange(values)
 
   render(): React.ReactElement<{}> {
@@ -45,6 +46,7 @@ export default class DataRangeScroll extends React.Component<IDataRangeScrollPro
       <div className={styles.inputRangeWrapper}>
         <InputRange
           draggableTrack
+          allowSameValues={true}
           minValue={minValue}
           maxValue={maxValue}
           value={{

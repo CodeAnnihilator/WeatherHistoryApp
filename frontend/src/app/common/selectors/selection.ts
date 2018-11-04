@@ -8,7 +8,7 @@ export const getCurrentMaxValue = state => state.getIn(['selection', 'currentMax
 export const getIsDetailedAvailable = createSelector(
   [getCurrentMinValue, getCurrentMaxValue],
   (min, max) => {
-    if ((max - min) === 1) {
+    if ((max - min) === 0) {
       return true
     } else {
       return false

@@ -27,8 +27,8 @@ export default class AnchorLinks extends React.Component<{}> {
         />
         <Anchor
           icon={lightBulb}
-          desc='The Beginning'
-          to='theBeginning'
+          desc='Inspiration'
+          to='inspiration'
           containerId='containerElement'
         />
         <Anchor

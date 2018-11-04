@@ -53,22 +53,46 @@ export default function d3ResizeChart(root, data, shouldUpdate) {
     .transition()
     .call(yAxis)
 
-  chart
+  const circle = chart
     .selectAll('circle')
     .data(data)
+
+  circle
     .attr('cx', (d, i) => x(new Date(d.key.replace("-", "/"))))
     .attr('cy', (d, i) => y(d.value))
+    .exit()
+    .remove()
+
+  circle
+    .enter()
+    .append('circle')
+    .attr('id', (d, i) => ('dot-' + i))
+    .attr('cx', (d, i) => x(new Date(d.key.replace("-", "/"))))
+    .attr('cy', (d, i) => y(d.value))
+    .attr('r', 4)
+    .style('opacity', 0)
 
   const hoverLine = chart
     .selectAll(`.${cn(styles.hoverLine)}`)
     .data(data)
 
-  hoverLine.data(data)
+  hoverLine
     .attr('height', (d) => (height - y(d.value) - margin.top - margin.bottom))
     .attr('x', (d, i) => (x(new Date(d.key.replace("-", "/"))) - 2 / 2))
     .attr('y', (d, i) => (y(d.value) + 3))
     .exit()
     .remove()
+
+  hoverLine
+    .enter()
+    .append('rect')
+    .style('opacity', 0)
+    .attr('width', 2)
+    .attr('class', cn(styles.lineChart, styles.hoverLine))
+    .attr('id', (d, i) => ('line-' + i))
+    .attr('height', (d) => (height - y(d.value) - margin.top - margin.bottom))
+    .attr('x', (d, i) => (x(new Date(d.key.replace("-", "/"))) - 2 / 2))
+    .attr('y', (d, i) => (y(d.value) + 3))
 
   const hoverBox = chart
     .selectAll(`.${cn(styles.hoverBox)}`)
@@ -83,19 +107,6 @@ export default function d3ResizeChart(root, data, shouldUpdate) {
     .on('mouseout', (d, i) => clearOnMouseOut(d, x, i))
     .exit()
     .remove()
-
-  if (shouldUpdate) return
-
-  hoverLine
-    .enter()
-    .append('rect')
-    .style('opacity', 0)
-    .attr('width', 2)
-    .attr('class', cn(styles.lineChart, styles.hoverLine))
-    .attr('id', (d, i) => ('line-' + i))
-    .attr('height', (d) => (height - y(d.value) - margin.top - margin.bottom))
-    .attr('x', (d, i) => (x(new Date(d.key.replace("-", "/"))) - 2 / 2))
-    .attr('y', (d, i) => (y(d.value) + 3))
 
   hoverBox
     .enter()
