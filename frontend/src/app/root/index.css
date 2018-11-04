@@ -5,6 +5,10 @@ html, body {
   margin: 0;
 }
 
+p, li {
+  font-size: 14px;
+  line-height: 23px;
+}
 
 body {
   font-family: Ubuntu, sans-serif;

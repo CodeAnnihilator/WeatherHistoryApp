@@ -1,9 +1,13 @@
 import * as React from 'react'
 import { Route, Switch, Redirect } from 'react-router'
+import { hot } from 'react-hot-loader'
+
 import Navigation from 'app/common/components/Navigation/Navigation'
 import Header from 'app/common/components/Header/Header'
-import Dashboard from '../modules/Dashboard/DashboardContainer'
-import { hot } from 'react-hot-loader'
+
+import Dashboard from 'app/modules/Dashboard/DashboardContainer'
+import Description from 'app/modules/Description/Description'
+import Developer from 'app/modules/Developer/Developer'
 
 import * as styles from './index.scss'
 
@@ -16,6 +20,8 @@ export const RouteMap = hot(module)(() => (
         <Switch>
           <Redirect exact from="/" to="/dash" />
           <Route path="/dash" component={Dashboard} />
+          <Route path="/dev_info" component={Description} />
+          <Route path="/about" component={Developer} />
         </Switch>
       </div>
     </div>

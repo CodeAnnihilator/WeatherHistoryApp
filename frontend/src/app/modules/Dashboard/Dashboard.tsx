@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component<IDashboardProps, IDashboa
     const { chartWidth } = this.state
     const { data } = this.props
     return (
-      <div ref='main'>
+      <div ref='main' style={{ flex: 1 }}>
         <SubHeader text='years range' backgroundColor='white'  />
         { !data.length && 'Loading data...' }
         {

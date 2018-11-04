@@ -5,11 +5,13 @@
   height: 100%;
   border-right: 1px solid #e3e3e3;
   width: 200px;
+  min-width: 200px;
   transition: all 0.25s ease-in-out;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .collapsed {
+  min-width: 85px;
   width: 85px;
 }

@@ -15,7 +15,6 @@ import {
 export const getCurrentTab = state => state.getIn(['dashboard', 'currentTab'])
 export const getAggregation = state => state.getIn(['dashboard', 'aggregation'])
 export const getIsDetailed = state => state.getIn(['dashboard', 'isDetailed'])
-export const getIsSmoothnessEnabled = state => state.getIn(['dashboard', 'isSmoothnessEnabled'])
 
 export const getCurrentData = createSelector(
   [getTemperature, getPrecipitation, getCurrentTab],

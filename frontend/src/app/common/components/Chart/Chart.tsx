@@ -12,6 +12,8 @@ interface IDashboardProps {
   data: string[]
 }
 
+// TODO: refactor d3 to be able to use it as react components
+
 export default class Chart extends React.Component<IDashboardProps> {
 
   public refs: {
