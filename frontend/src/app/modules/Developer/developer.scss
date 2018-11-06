@@ -1,0 +1,17 @@
+.container {
+  background-image: url('app/assets/bg.jpg');
+  display: flex;
+  flex: 1;
+  background-size: cover;
+}
+
+.pages {
+  margin: 20px;
+  display: flex;
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  overflow-y: scroll;
+  padding: 20px 40px;
+  color: #42474c;
+}

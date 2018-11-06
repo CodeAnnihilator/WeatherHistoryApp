@@ -1,0 +1,41 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(69, 72, 75, 0.9);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding-top: 250px;
+  animation-name: appearBlock;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  &_el {
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 30px;
+    text-align: right;
+    animation-name: appear;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    text-decoration: none;
+    &:hover:not(.nav_el--active) {
+      background-color: #444548;
+      cursor: pointer;
+    }
+    &--active {
+      background-color: #49a1fe;
+    }
+  }
+}
+
+@keyframes appearBlock {
+  from {margin-left: 0;}
+  to {margin-left: 47px;}
+}
+
+@keyframes appear {
+  from {line-height: 20px;}
+  to {line-height: 40px;}
+}
