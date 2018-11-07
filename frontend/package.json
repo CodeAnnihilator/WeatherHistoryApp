@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "development": "babel-node config/dev-server.js",
-    "start": "node config/serve-static-server.js",
+    "start": "npm run rebuild && node config/serve-static-server.js",
     "build": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config config/webpack.config.production.js --progress --profile --color",
     "rebuild": "npm run cleandist && npm run build",
     "cleandist": "rm -rf dist/*"

@@ -8,7 +8,6 @@ interface INavigationProps {
 }
 
 const Navigation: React.SFC<INavigationProps> = ({ url }) => {
-  console.log(url)
   return (
     <ul className={styles.nav}>
       <NavLink

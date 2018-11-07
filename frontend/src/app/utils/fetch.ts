@@ -2,8 +2,6 @@ import axios from 'axios'
 
 import { backendURI } from 'app/config/main'
 
-console.log(process.env.NODE_ENV)
-
 export const fetch = axios.create({
   baseURL: backendURI
 })
