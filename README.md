@@ -21,7 +21,7 @@ Start dev server:
 ```
 ./bin/develop.sh
 ```
-Wait for docker to complete, then open [http://localhost:8000](http://localhost:8000)
+Wait for docker to complete, then open [http://localhost:3000](http://localhost:3000)
 
 ## Production Mode
 
@@ -29,7 +29,7 @@ Start production server:
 ```
 ./bin/deploy.sh
 ```
-Wait for docker to complete, then open [http://localhost:8000](http://localhost:8000)
+Wait for docker to complete, then open [http://localhost:3000](http://localhost:3000)
 
 ## Install New Dependencies
 ```sh
