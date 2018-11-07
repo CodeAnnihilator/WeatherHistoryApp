@@ -55,7 +55,7 @@ export default class Experience extends React.Component<{}> {
         </p>
         <h3 className={styles.sub_header}>
           5. I also have a lot pet projects, some of them you can find on my github page 
-          <a href='https://github.com/CodeAnnihilator'> www.github.com/CodeAnnihilator</a>
+          <a href='https://github.com/CodeAnnihilator' target='_blank'> www.github.com/CodeAnnihilator</a>
         </h3>
         <p>
           Many of these project are related to Full-Stack development because 
